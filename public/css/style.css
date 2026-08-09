@@ -11,6 +11,7 @@
     width: 100%;
 }
 .signup-form form {
+    width: 500px;
     padding: 10px 40px;
 }
 .signup-form h2 {
