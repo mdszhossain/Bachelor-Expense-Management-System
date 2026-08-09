@@ -10,6 +10,7 @@ const ejs = require("ejs");
 const methodOverride = require("method-override");
 const path = require("path");
 const ExpressError = require("./utils/ExpressError");
+const ejsEngine = require("ejs-mate");
 
 // uses of essential middlewares
 app.set("view engine", "ejs");
@@ -19,6 +20,13 @@ app.use(express.static(path.join(__dirname, "/public/js")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
+app.engine("ejs", ejsEngine);
+
+// routers
+const userRouter = require("./routes/userRoute");
+
+// using routers
+app.use("/bems", userRouter);
 
 // error handling middleware
 app.use((req, res, next) => {
