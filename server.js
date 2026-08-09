@@ -11,6 +11,8 @@ const methodOverride = require("method-override");
 const path = require("path");
 const ExpressError = require("./utils/ExpressError");
 const ejsEngine = require("ejs-mate");
+const session = require("express-session");
+const connectDB = require("./db/connectDB");
 
 // uses of essential middlewares
 app.set("view engine", "ejs");
@@ -21,6 +23,21 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsEngine);
+app.use(
+  session({
+    secret: "secretstring",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+    },
+  }),
+);
+
+// database connection
+connectDB();
 
 // routers
 const userRouter = require("./routes/userRoute");
@@ -30,11 +47,11 @@ app.use("/bems", userRouter);
 
 // error handling middleware
 app.use((req, res, next) => {
-    throw new ExpressError(404, "Page Not Found");
-})
+  throw new ExpressError(404, "Page Not Found");
+});
 app.use((error, req, res, next) => {
-    const {status = 500, message = "Some Error"} = error;
-    res.status(status).send(message);
+  const { status = 500, message = "Some Error" } = error;
+  res.status(status).send(message);
 });
 
 // server listening

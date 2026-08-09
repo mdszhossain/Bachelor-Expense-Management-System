@@ -10,6 +10,10 @@
     margin-bottom: 15px;
     width: 100%;
 }
+.signup-form input:focus {
+    outline: 2px solid #cdc7ff;
+    
+}
 .signup-form form {
     width: 500px;
     padding: 10px 40px;
