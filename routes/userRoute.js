@@ -5,5 +5,6 @@ const wrapAsync = require("../utils/wrapAsync");
 
 router.get("/signup", wrapAsync(userController.renderSignupPage));
 router.get("/signin", wrapAsync(userController.renderSigninPage));
+router.post("/signup", wrapAsync(userController.signup));
 
 module.exports = router;

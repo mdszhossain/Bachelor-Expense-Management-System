@@ -8,8 +8,7 @@
         </div>
         <div class="signup-form" style="margin-top: 10px; background-color: #FFFFFF;">
             <h2><b>Create a New Account</b></h2>
-            <form action="">
-                
+            <form action="/bems/signup" method="POST">
                 <div>
                     <label for="fullname">Full Name</label> <br>
                     <input type="text" id="fullname" name="fullname" placeholder="John Doe">
@@ -28,7 +27,7 @@
                 </div>
                 <div>
                     <label for="password">Password</label> <br>
-                    <input type="text" id="password" name="password" placeholder="Enter Password">
+                    <input type="password" id="password" name="password" placeholder="Enter Password">
                 </div>
                 <button type="submit">Signup</button>
                 <hr style="margin-top: 20px;">

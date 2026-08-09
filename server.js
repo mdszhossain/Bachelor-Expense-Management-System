@@ -13,6 +13,9 @@ const ExpressError = require("./utils/ExpressError");
 const ejsEngine = require("ejs-mate");
 const session = require("express-session");
 const connectDB = require("./db/connectDB");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/userModel");
 
 // uses of essential middlewares
 app.set("view engine", "ejs");
@@ -36,11 +39,20 @@ app.use(
   }),
 );
 
+// using passport for authentication and authorization
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 // database connection
 connectDB();
 
 // routers
 const userRouter = require("./routes/userRoute");
+
+
 
 // using routers
 app.use("/bems", userRouter);
