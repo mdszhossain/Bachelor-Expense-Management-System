@@ -1,0 +1,25 @@
+<%- layout("./layout/boilerplate") %>
+<section class="flex justify-center items-center h-screen" style="background-color: #E8EDFE;">
+    <div>
+        <div class="text-center">
+            <h3 class="font-bold text-xl">Bachelor Expense</h3>
+            <p>Management System</p>
+        </div>
+        <div class="signup-form" style="margin-top: 10px; background-color: #FFFFFF;">
+            <h2><b>Signin to your account</b></h2>
+            <form action="/bems/signin" method="POST">
+                <div>
+                    <label for="username">Username</label> <br>
+                    <input type="text" id="username" name="username" placeholder="john@110">
+                </div>
+                <div>
+                    <label for="password">Password</label> <br>
+                    <input type="text" id="password" name="password" placeholder="Enter Password">
+                </div>
+                <button type="submit">Signin</button>
+                <hr style="margin-top: 20px;">
+                <p style="margin-top: 10px;" class="text-center">Dont have an account? <a href="/bems/signup"><b>Create One</b></a></p>
+            </form>
+        </div>
+    </div>
+</section>
