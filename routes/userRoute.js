@@ -4,7 +4,6 @@ const userController = require("../controllers/userController");
 const wrapAsync = require("../utils/wrapAsync");
 const { validateSignup } = require("../middleware/validateSignup");
 const { validateSignin } = require("../middleware/validateSignin");
-const { validate } = require("../models/userModel");
 const passport = require("passport");
 
 router.get("/signup", wrapAsync(userController.renderSignupPage));

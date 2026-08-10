@@ -1,0 +1,15 @@
+<nav class="navbar flex items-cetner justify-around p-4 bg-[#FFFFFF]">
+    <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-full bg-[#4F39F6] flex items-center justify-center"><i class="fa-solid fa-people-roof text-xl text-[#FFFFFF]"></i></div>
+        <div class=" ">
+            <h3 class="text-[#4F39F6] font-bold text-xl">Bachelor Expense Tracker</h3>
+        </div>
+    </div>
+    <div class="flex items-center gap-5">
+        <a class="text-sm p-2 border border-[#4F39F6] rounded-full text-[#4F39F6]" href="/bems/dashboard"><i class="fa-solid fa-sliders"></i> Dashboard</a>
+        <a class="text-sm p-2 border border-[#4F39F6] rounded-full text-[#4F39F6]" href="/bems/meals"><i class="fa-solid fa-utensils"></i> Meal management</a>
+        <form action="/bems/signout" method="POST">
+            <button type="submit" class="signout-btn text-sm bg-red-500 p-2 text-white rounded-full"><i class="fa-solid fa-arrow-right-from-bracket"></i> Signout</button>
+        </form>
+    </div>
+</nav>

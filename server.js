@@ -51,11 +51,11 @@ connectDB();
 
 // routers
 const userRouter = require("./routes/userRoute");
-
-
+const dashboardRouter = require("./routes/dashboarRoute");
 
 // using routers
 app.use("/bems", userRouter);
+app.use("/bems", dashboardRouter);
 
 // error handling middleware
 app.use((req, res, next) => {
