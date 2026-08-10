@@ -9,8 +9,6 @@ module.exports.renderSigninPage = async (req, res) => {
 module.exports.signup = async (req, res) => {
   const { fullname, username, email, phone, password } = req.body;
   const newUser = new User({fullname, username, email, phone});
-  console.log(newUser);
   const registeredUser = await User.register(newUser, password);
-  console.log(registeredUser);
   res.send(`User Data Registered`);
 };
