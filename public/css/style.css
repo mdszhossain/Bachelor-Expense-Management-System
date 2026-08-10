@@ -34,6 +34,10 @@
 .signout-btn:hover {
     cursor: pointer;
 }
-.navbar {
+.navbar-container {
     box-shadow: 1px 1px 5px rgb(221, 221, 221);
+}
+.navigations a:hover {
+    background-color: #4F39F6;
+    color: white;
 }

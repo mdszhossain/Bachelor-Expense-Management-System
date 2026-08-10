@@ -15,5 +15,6 @@ router.post(
   passport.authenticate("local", { failureRedirect: "/bems/signin" }),
   wrapAsync(userController.signin),
 );
+router.post("/signout", wrapAsync(userController.signout));
 
 module.exports = router;
