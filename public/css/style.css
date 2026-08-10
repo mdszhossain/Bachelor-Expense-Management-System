@@ -10,7 +10,7 @@
 }
 .signup-form input:focus {
     outline: 2px solid #cdc7ff;
-    
+
 }
 .signup-form form {
     width: 500px;
@@ -40,4 +40,13 @@
 .navigations a:hover {
     background-color: #4F39F6;
     color: white;
+}
+.eye-icon {
+    position: relative;
+    top: -48px;
+    left: 390px;
+    color: gray;
+}
+.eye-icon:hover {
+    cursor: pointer;
 }

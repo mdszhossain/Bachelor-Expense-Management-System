@@ -28,6 +28,7 @@
                 <div>
                     <label for="password">Password</label> <br>
                     <input type="password" id="password" name="password" placeholder="Enter Password">
+                    <i class="fa-solid fa-eye-slash eye-icon" id="eye-icon"></i>
                 </div>
                 <button type="submit">Signup</button>
                 <hr style="margin-top: 20px;">
@@ -36,3 +37,19 @@
         </div>
     </div>
 </section>
+
+<script>
+    let eyeIcon = document.getElementById("eye-icon");
+    let x = document.getElementById("password");
+    eyeIcon.onclick = function() {
+        if (x.type === "password") {
+            x.type = "text";
+            eyeIcon.classList.remove("fa-eye-slash");
+            eyeIcon.classList.add("fa-eye")
+        } else {
+            x.type = "password";
+            eyeIcon.classList.remove("fa-eye");
+            eyeIcon.classList.add("fa-eye-slash");
+        }
+    }
+</script>
