@@ -12,3 +12,6 @@ module.exports.signup = async (req, res) => {
   const registeredUser = await User.register(newUser, password);
   res.send(`User Data Registered`);
 };
+module.exports.signin = async(req, res) => {
+  res.send("Signin Successful. Session Started");
+}
