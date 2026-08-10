@@ -2,7 +2,7 @@
 <%- include("./includes/navbar") %>
 <div class="w-9/12 m-auto">
     <div class="mt-5">
-        <h2 class="font-bold text-2xl">Welcome, Md Shazzad Hossain</h2>
+        <h2 class="font-bold text-2xl">Welcome, <%= fullname %></h2>
         <p class="text-gray-800">Mange you shared house expense here</p>
     </div>
     <div class="grid grid-cols-3 gap-10">
@@ -21,11 +21,38 @@
             </div>
         </div>
         <div class="bg-white p-4 rounded-xl flex items-center gap-4 mt-5">
-            <div class="w-10 h-10 flex items-center justify-center bg-[#EEF2FF] rounded-full"><i class="fa-solid fa-users text-[#4F39F6]"></i></div>
+            <div class="w-10 h-10 flex items-center justify-center bg-[#EEF2FF] rounded-full"><i class="fa-solid fa-money-check-dollar text-[#4F39F6]"></i></div>
             <div>
                 <h3 class="font-medium text-2xl">0</h3>
-                <p class="text-sm text-gray-800">Total Members</p>
+                <p class="text-sm text-gray-800">Rent Per Person</p>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="w-9/12 m-auto grid grid-cols-2 mt-5 rounded-xl gap-10">
+    <div class="bg-white rounded-xl py-4">
+        <div class="flex items-center w-10/12 justify-between m-auto">
+            <div>
+                <h3 class="font-bold text-[#4F39F6] text-xl">Monthly Rent and Bills</h3>
+                <p class="text-gray-800 text-sm">Rent and utility bills per month</p>
+            </div>
+            <form action="/bems/addRent" method="GET">
+                <button class="add-btns bg-[#4F39F6] text-white py-2 px-4 rounded-full">+ Add Rent</button>
+            </form>
+        </div>
+        <hr class="mt-5 text-[#F2F2F2]">
+    </div>
+    <div class="bg-white rounded-xl py-4">
+        <div class="flex items-center w-10/12 justify-between m-auto">
+            <div>
+                <h3 class="font-bold text-[#4F39F6] text-xl">Member List</h3>
+                <p class="text-gray-800 text-sm">All house mates and their details</p>
+            </div>
+            <form action="/bems/addMembers" method="GET">
+                <button class="add-btns bg-[#4F39F6] text-white py-2 px-4 rounded-full">+ Add Member </button>
+            </form>
+        </div>
+        <hr class="mt-5 text-[#F2F2F2]">
     </div>
 </div>

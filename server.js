@@ -52,10 +52,20 @@ connectDB();
 // routers
 const userRouter = require("./routes/userRoute");
 const dashboardRouter = require("./routes/dashboarRoute");
+const rentRouter = require("./routes/rentRoute");
+
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user || null;
+  if(req.user) {
+    res.locals.fullname = req.user.fullname;
+  }
+  next();
+});
 
 // using routers
 app.use("/bems", userRouter);
 app.use("/bems", dashboardRouter);
+app.use("/bems", rentRouter);
 
 // error handling middleware
 app.use((req, res, next) => {

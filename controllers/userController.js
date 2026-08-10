@@ -10,7 +10,7 @@ module.exports.signup = async (req, res) => {
   const { fullname, username, email, phone, password } = req.body;
   const newUser = new User({ fullname, username, email, phone });
   const registeredUser = await User.register(newUser, password);
-  res.send(`User Data Registered`);
+  res.redirect("/bems/signin");
 };
 module.exports.signin = async (req, res) => {
   res.redirect("/bems/dashboard");

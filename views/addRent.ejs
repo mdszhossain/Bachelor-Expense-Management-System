@@ -1,0 +1,25 @@
+<%- layout("./layout/boilerplate") %>
+<%- include("./includes/navbar") %>
+
+<section class="flex justify-center items-center h-screen" style="background-color: #E8EDFE;">
+    <div class="">
+        <div class="signup-form" style="margin-top: 10px; background-color: #FFFFFF;">
+            <h2 class="text-center"><b>Add Rental Information</b></h2>
+            <form action="/bems/dashboard" method="GET">
+                <div>
+                    <label for="month">Month</label> <br>
+                    <input type="month" id="month" name="month" placeholder="John Doe">
+                </div>
+                <div>
+                    <label for="rent">House Rent</label> <br>
+                    <input type="number" id="rent" name="rent" placeholder="20000">
+                </div>
+                <div>
+                    <label for="utility">Email</label> <br>
+                    <input type="number" id="utility" name="utility" placeholder="4000">
+                </div>
+                <button type="submit" class="mb-5">Add Rent Information</button>
+            </form>
+        </div>
+    </div>
+</section>
