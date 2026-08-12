@@ -9,22 +9,22 @@
         <div class="bg-white p-4 rounded-xl flex items-center gap-4 mt-5">
             <div class="w-10 h-10 flex items-center justify-center bg-[#EEF2FF] rounded-full"><i class="fa-solid fa-users text-[#4F39F6]"></i></div>
             <div>
-                <h3 class="font-medium text-2xl">0</h3>
+                <h3 class="font-medium text-2xl"><%= typeof totalMembers !== 'undefined' ? totalMembers : 0 %></h3>
                 <p class="text-sm text-gray-800">Total Members</p>
             </div>
         </div>
         <div class="bg-white p-4 rounded-xl flex items-center gap-4 mt-5">
             <div class="w-10 h-10 flex items-center justify-center bg-[#EEF2FF] rounded-full"><i class="fa-solid fa-calendar text-[#4F39F6]"></i></div>
             <div>
-                <h3 class="font-medium text-2xl">0</h3>
+                <h3 class="font-medium text-2xl"><%= typeof monthsTracked !== 'undefined' ? monthsTracked : 0 %></h3>
                 <p class="text-sm text-gray-800">Months Tracked</p>
             </div>
         </div>
         <div class="bg-white p-4 rounded-xl flex items-center gap-4 mt-5">
             <div class="w-10 h-10 flex items-center justify-center bg-[#EEF2FF] rounded-full"><i class="fa-solid fa-money-check-dollar text-[#4F39F6]"></i></div>
             <div>
-                <h3 class="font-medium text-2xl">0</h3>
-                <p class="text-sm text-gray-800">Rent Per Person</p>
+                <h3 class="font-medium text-2xl"><%= rents && rents.length ? (Math.round(((totalRent + totalUtility) / rents.length) * 100) / 100) : 0 %></h3>
+                <p class="text-sm text-gray-800">Rent Per Month (avg)</p>
             </div>
         </div>
     </div>
@@ -42,6 +42,39 @@
             </form>
         </div>
         <hr class="mt-5 text-[#F2F2F2]">
+        <div class="p-6">
+            <% if (rents && rents.length) { %>
+                <table class="w-full text-left">
+                    <thead>
+                        <tr>
+                            <th class="py-2">Month</th>
+                            <th class="py-2">Rent</th>
+                            <th class="py-2">Utility</th>
+                            <th class="py-2">Total</th>
+                            <th class="py-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% rents.forEach(r => { %>
+                            <tr>
+                                <td class="py-2"><%= r.month %></td>
+                                <td class="py-2"><%= r.rent %></td>
+                                <td class="py-2"><%= r.utilityBill %></td>
+                                <td class="py-2"><%= r.rent + r.utilityBill %></td>
+                                <td class="py-2">
+                                    <a class="bg-[#4F39F6] text-white py-1 px-3 rounded" href="/bems/rent/<%= r._id %>/edit">Edit</a>
+                                    <form action="/bems/rent/<%= r._id %>?_method=DELETE" method="POST" style="display:inline-block; margin-left:8px;">
+                                        <button type="submit" onclick="return confirm('Delete this rent entry?')" class="bg-red-600 text-white py-1 px-3 rounded">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <p class="text-gray-600">No rent entries yet. Click Add Rent to create one.</p>
+            <% } %>
+        </div>
     </div>
     <div class="bg-white rounded-xl py-4">
         <div class="flex items-center w-10/12 justify-between m-auto">
@@ -49,10 +82,58 @@
                 <h3 class="font-bold text-[#4F39F6] text-xl">Member List</h3>
                 <p class="text-gray-800 text-sm">All house mates and their details</p>
             </div>
-            <form action="/bems/addMembers" method="GET">
-                <button class="add-btns bg-[#4F39F6] text-white py-2 px-4 rounded-full">+ Add Member </button>
-            </form>
+            <a href="/bems/addMember" class="add-btns bg-[#4F39F6] text-white py-2 px-4 rounded-full inline-block">+ Add Member</a>
         </div>
         <hr class="mt-5 text-[#F2F2F2]">
+        <div class="p-6">
+            <% if (members && members.length) { %>
+                <table class="w-full text-left">
+                    <thead>
+                        <tr>
+                            <th class="py-2">Name</th>
+                            <th class="py-2">Phone</th>
+                            <th class="py-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% members.forEach(m => { %>
+                            <tr>
+                                <td class="py-2"><%= m.name %></td>
+                                <td class="py-2"><%= m.phone %></td>
+                                <td class="py-2">
+                                    <a class="bg-[#4F39F6] text-white py-1 px-3 rounded" href="/bems/editMember/<%= m._id %>">Edit</a>
+                                    <form action="/bems/member/<%= m._id %>?_method=DELETE" method="POST" style="display:inline-block; margin-left:8px;">
+                                        <button type="submit" onclick="return confirm('Delete this member?')" class="bg-red-600 text-white py-1 px-3 rounded">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <p class="text-gray-600">No members yet. Click Add Member to create one.</p>
+            <% } %>
+        </div>
+
+        <!-- Hidden add-member form, shown when + Add Member clicked -->
+        <div id="addMemberForm" class="p-6" style="display:none; border-top:1px solid #F2F2F2;">
+            <form action="/bems/addMembers" method="POST" class="grid grid-cols-2 gap-4 w-8/12">
+                <div>
+                    <label for="name">Name</label> <br>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required class="w-full">
+                </div>
+                <div>
+                    <label for="phone">Phone</label> <br>
+                    <input type="text" id="phone" name="phone" placeholder="017XXXXXXXX" required class="w-full">
+                </div>
+                <div class="col-span-2">
+                    <button type="submit" class="add-btns bg-[#4F39F6] text-white py-2 px-4 rounded-full">Add Member</button>
+                    <button type="button" id="cancelAddMember" class="ml-3 py-2 px-4 rounded-full border">Cancel</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+<script>
+    // Add-member form removed from dashboard; addMember is a separate page.
+</script>

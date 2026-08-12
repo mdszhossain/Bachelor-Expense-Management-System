@@ -53,9 +53,10 @@ connectDB();
 const userRouter = require("./routes/userRoute");
 const dashboardRouter = require("./routes/dashboarRoute");
 const rentRouter = require("./routes/rentRoute");
+const memberRouter = require("./routes/memberRoute");
 
 app.use((req, res, next) => {
-  res.locals.currentUser = req.user || null;
+  // res.locals.currentUser = req.user || null;
   if(req.user) {
     res.locals.fullname = req.user.fullname;
   }
@@ -66,6 +67,7 @@ app.use((req, res, next) => {
 app.use("/bems", userRouter);
 app.use("/bems", dashboardRouter);
 app.use("/bems", rentRouter);
+app.use("/bems", memberRouter);
 
 // error handling middleware
 app.use((req, res, next) => {
@@ -73,7 +75,8 @@ app.use((req, res, next) => {
 });
 app.use((error, req, res, next) => {
   const { status = 500, message = "Some Error" } = error;
-  res.status(status).send(message);
+  const returnTo = req.get("Referrer") || "/";
+  res.status(status).render("error.ejs", { status, message, returnTo });
 });
 
 // server listening

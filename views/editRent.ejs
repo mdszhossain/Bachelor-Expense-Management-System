@@ -1,0 +1,25 @@
+<%- layout("./layout/boilerplate") %>
+<%- include("./includes/navbar") %>
+
+<section class="flex justify-center items-center h-screen" style="background-color: #E8EDFE;">
+    <div class="">
+        <div class="signup-form" style="margin-top: 10px; background-color: #FFFFFF;">
+            <h2 class="text-center"><b>Edit Rental Information</b></h2>
+            <form action="/bems/rent/<%= rent._id %>?_method=PUT" method="POST">
+                <div>
+                    <label for="month">Month</label> <br>
+                    <input type="month" id="month" name="month" value="<%= rent.month %>">
+                </div>
+                <div>
+                    <label for="rent">House Rent</label> <br>
+                    <input type="number" id="rent" name="rent" value="<%= rent.rent %>">
+                </div>
+                <div>
+                    <label for="utility">Utility Bill</label> <br>
+                    <input type="number" id="utility" name="utilityBill" value="<%= rent.utilityBill %>">
+                </div>
+                <button type="submit" class="mb-5">Update Rent Information</button>
+            </form>
+        </div>
+    </div>
+</section>

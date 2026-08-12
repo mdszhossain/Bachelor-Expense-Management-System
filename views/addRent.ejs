@@ -5,7 +5,7 @@
     <div class="">
         <div class="signup-form" style="margin-top: 10px; background-color: #FFFFFF;">
             <h2 class="text-center"><b>Add Rental Information</b></h2>
-            <form action="/bems/dashboard" method="GET">
+            <form action="/bems/addRent" method="POST">
                 <div>
                     <label for="month">Month</label> <br>
                     <input type="month" id="month" name="month" placeholder="John Doe">
@@ -16,7 +16,7 @@
                 </div>
                 <div>
                     <label for="utility">Email</label> <br>
-                    <input type="number" id="utility" name="utility" placeholder="4000">
+                    <input type="number" id="utility" name="utilityBill" placeholder="4000">
                 </div>
                 <button type="submit" class="mb-5">Add Rent Information</button>
             </form>

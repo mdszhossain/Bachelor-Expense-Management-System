@@ -1,0 +1,21 @@
+<%- layout("./layout/boilerplate") %>
+<%- include("./includes/navbar") %>
+
+<section class="flex justify-center items-center h-screen" style="background-color: #E8EDFE;">
+    <div class="">
+        <div class="signup-form" style="margin-top: 10px; background-color: #FFFFFF;">
+            <h2 class="text-center"><b>Edit Member</b></h2>
+            <form action="/bems/editMember/<%= member._id %>?_method=PUT" method="POST">
+                <div>
+                    <label for="name">Name</label> <br>
+                    <input type="text" id="name" name="name" value="<%= member.name %>" required>
+                </div>
+                <div>
+                    <label for="phone">Phone</label> <br>
+                    <input type="text" id="phone" name="phone" value="<%= member.phone %>" required>
+                </div>
+                <button type="submit" class="mb-5">Update Member</button>
+            </form>
+        </div>
+    </div>
+</section>
