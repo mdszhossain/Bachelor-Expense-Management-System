@@ -51,6 +51,7 @@
                             <th class="py-2">Rent</th>
                             <th class="py-2">Utility</th>
                             <th class="py-2">Total</th>
+                            <th class="py-2">Rent Per Person</th>
                             <th class="py-2">Actions</th>
                         </tr>
                     </thead>
@@ -61,10 +62,11 @@
                                 <td class="py-2"><%= r.rent %></td>
                                 <td class="py-2"><%= r.utilityBill %></td>
                                 <td class="py-2"><%= r.rent + r.utilityBill %></td>
+                                <td class="py-2"><%= totalMembers ? ((r.rent + r.utilityBill) / totalMembers).toFixed(2) : 0 %></td>
                                 <td class="py-2">
                                     <a class="bg-[#4F39F6] text-white py-1 px-3 rounded" href="/bems/rent/<%= r._id %>/edit">Edit</a>
                                     <form action="/bems/rent/<%= r._id %>?_method=DELETE" method="POST" style="display:inline-block; margin-left:8px;">
-                                        <button type="submit" onclick="return confirm('Delete this rent entry?')" class="bg-red-600 text-white py-1 px-3 rounded">Delete</button>
+                                        <button type="submit" onclick="return confirm('Delete this rent entry?')" class="bg-red-600 text-white py-0.5 px-3 rounded">Delete</button>
                                     </form>
                                 </td>
                             </tr>
@@ -103,7 +105,7 @@
                                 <td class="py-2">
                                     <a class="bg-[#4F39F6] text-white py-1 px-3 rounded" href="/bems/editMember/<%= m._id %>">Edit</a>
                                     <form action="/bems/member/<%= m._id %>?_method=DELETE" method="POST" style="display:inline-block; margin-left:8px;">
-                                        <button type="submit" onclick="return confirm('Delete this member?')" class="bg-red-600 text-white py-1 px-3 rounded">Delete</button>
+                                        <button type="submit" onclick="return confirm('Delete this member?')" class="bg-red-600 text-white py-0.5 px-3 rounded">Delete</button>
                                     </form>
                                 </td>
                             </tr>
